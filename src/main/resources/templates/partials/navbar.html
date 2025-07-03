@@ -1,0 +1,25 @@
+<!-- sidebar.html -->
+<div th:fragment="navbarFragment">
+    <!-- Barra de navegación lateral -->
+    <div class="sidebar p-3">
+        <img alt="Logo" src="">
+        <h3 class="text-center">Menú de Navegación</h3>
+
+        <a href="#">Inicio</a>
+        <a href="/usuario">Usuarios</a>
+        <a href="/telefono">Teléfonos</a>
+        <a href="/muestraTiposLlamada">Tipos de Llamada</a>
+        <a href="/medicamento">Medicamentos</a>
+        <a href="/localidades">Localidades</a>
+        <a href="/empleado">Empleado</a>
+
+        <div class="d-flex gap-2 mt-2">
+            <a href="/login" th:if="${#authorization.expression('isAnonymous()')}">
+                <button class="btn btn-primary">Login</button>
+            </a>
+            <a href="/logout" th:if="${#authorization.expression('isAuthenticated()')}">
+                <button class="btn btn-danger">Log out</button>
+            </a>
+        </div>
+    </div>
+</div>
