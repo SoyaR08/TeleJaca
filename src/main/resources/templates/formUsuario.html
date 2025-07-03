@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario Usuario</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<style>
+    .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .card-header {
+        background-color: #a5d6a7;
+    }
+</style>
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="form-container">
+        <div class="card shadow-lg">
+            <div class="card-header text-white text-center">
+                <h2 th:text="${action == 'add' ? 'Agregando Usuario' : action == 'edit' ? 'Editando Usuario' : action == 'vermas' ? 'Información de Usuario' : 'Eliminando Usuario'}"></h2>
+            </div>
+            <div class="card-body">
+                <form th:action="@{#httpServletRequest.requestURI}" method="post" th:object="${usuario}">
+                    <!-- ID y Nombre -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="id" class="form-label">ID</label>
+                                <input id="id" name="id" th:field="*{id}" type="text" class="form-control" disabled placeholder="Se asigna automáticamente">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input id="nombre" name="nombre" th:field="*{nombre}" type="text" class="form-control" required th:disabled="${action == 'delete' or action == 'vermas'}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Apellido y Fecha de Nacimiento -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="apellido" class="form-label">Apellido</label>
+                                <input id="apellido" name="apellido" th:field="*{apellido}" type="text" class="form-control" required th:disabled="${action == 'delete' or action == 'vermas'}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                                <input id="fechaNacimiento" name="fechaNacimiento" th:field="*{fechaNacimiento}" type="date" class="form-control" required th:disabled="${action == 'delete' or action == 'vermas'}">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Género y Descripción -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="genero" class="form-label">Género</label>
+                                <select id="genero" name="genero" th:field="*{genero}" class="form-select" required th:disabled="${action == 'delete' or action == 'vermas'}">
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                            
+                            	
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input id="direccion" name="direccion" th:field="*{direccion}" type="text" class="form-control" th:disabled="${action == 'delete' or action == 'vermas'}">
+                            
+                            
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Unidad de Convivencia y ID de Localidad -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="unidadDeConvivencia" class="form-label">Unidad de Convivencia</label>
+                                <input id="unidadDeConvivencia" name="unidadDeConvivencia" th:field="*{unidadDeConvivencia}" type="text" class="form-control" th:disabled="${action == 'delete' or action == 'vermas'}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="localidadId" class="form-label">ID de Localidad</label>
+                                <select class="form-control" th:if="${action == 'add' or action == 'edit'}">
+                                
+                                	<option class="form-control" th:each=" l : ${locations}" th:value="${l.id}" th:text="${l.name}"></option>
+                                
+                                </select>
+                                <input th:if="${action == 'delete' or action == 'vermas'}" id="localidadId" name="localidadId" th:field="*{location.name}" type="text" class="form-control" required th:disabled="${action == 'delete' or action == 'vermas'}">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Teléfono y Dirección -->
+                    <div class="row">
+                        <div class="col-md-6" th:if="${action == 'add'}">
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <input id="telefono" name="telefono" type="text" pattern="\d{9}" maxlength="9" class="form-control" required >
+                            </div>
+                        </div>
+                        <div class="col-md-6" th:if="${action == 'add'}">
+                        	<div class="mb-3">
+                            	<label for="description" class="form-label">Descripción del teléfono</label>
+                                <input id="description" name="description" type="text" class="form-control" required th:disabled="${action == 'delete' or action == 'vermas'}">
+                        	</div>
+                        </div>
+                    </div>
+
+                    <!-- Datos Importantes -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label for="datosImportantes" class="form-label">Datos Importantes</label>
+                                <textarea id="datosImportantes" name="datosImportantes" th:field="*{datosImportantes}" class="form-control" rows="3" th:disabled="${action == 'delete' or action == 'vermas'}"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="text-center mt-4">
+                        <button th:if="${action == 'delete'}" type="submit" class="btn btn-lg btn-outline-danger me-2">Confirmar Eliminación</button>
+                        <a th:if="${action == 'vermas'}" th:href="@{'/usuario'}" class="btn btn-lg btn-outline-success me-2">Volver</a>
+<a
+								th:if="${action == 'vermas'}"
+								th:href="@{'/telefono?idusuario=' + ${usuario.id}}"
+								class="btn btn-lg btn-outline-success me-2">Ver Telefonos</a> <a
+								th:if="${action == 'vermas'}"
+								th:href="@{'/medicamento?idusuario=' + ${usuario.id}}"
+								class="btn btn-lg btn-outline-success me-2">Ver Medicamentos</a>						<a th:if="${action == 'vermas'}" th:href="@{'/llamada?id=' + ${usuario.id}}" class="btn btn-lg btn-outline-success me-2">Ver Llamadas <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z" /></svg></a>
+						<a th:if="${action == 'vermas'}" th:href="@{'/usuario/viewcare?userId='+ ${usuario.id}}" class="btn btn-lg btn-outline-success me-2">Ver Cuidadores</a>
+						
+                        <button th:if="${action == 'edit'}" type="submit" class="btn btn-lg btn-outline-success me-2">Confirmar Edición</button>
+                        <button th:if="${action == 'add'}" type="submit" class="btn btn-lg btn-outline-primary me-2">Agregar Usuario</button>
+                        <a th:if="${action == 'add' || action == 'edit' || action == 'delete'}" th:href="@{'/usuario'}" class="btn btn-lg btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-dDHsxLDC5jQ37uRNOmMrDbm+oGhP8i17ywslNIJ63zxchKpGlvysBQND4CM80av8" crossorigin="anonymous"></script>
+</body>
+</html>
+

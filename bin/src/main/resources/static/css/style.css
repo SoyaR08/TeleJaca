@@ -1,0 +1,108 @@
+body {
+	background-color: #f7f9f7;
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper {
+	display: flex;
+	height: 100vh;
+	/* Asegura que la página ocupe toda la altura de la pantalla */
+}
+
+.sidebar {
+	background-color: #4caf50;
+	color: white;
+	width: 250px;
+	padding-top: 20px;
+	height: 100%;
+	position: fixed;
+}
+
+.sidebar a {
+	color: white;
+	font-size: 18px;
+	text-decoration: none;
+	display: block;
+	padding: 10px;
+	transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+	background-color: #388e3c;
+}
+
+.main-content {
+	margin-left: 250px; /* Deja espacio para la barra lateral */
+	padding: 20px;
+	overflow-x: hidden; /* Evita el desbordamiento horizontal */
+	width: 100%;
+}
+
+.card-header {
+	background-color: #388e3c;
+	color: white;
+}
+
+.card-body {
+	background-color: #e8f5e9;
+}
+
+/* Personalización del thead */
+.table thead {
+	background-color: #c8e6c9; /* Verde pastel suave */
+	color: #388e3c; /* Texto en un verde más oscuro para el contraste */
+}
+
+/* Personalización de botones */
+/* Botón Ver más - Azul suave */
+.btn-agregar {
+	border-color: #80b3ff; /* Azul suave */
+	color: #80b3ff;
+}
+
+.btn-agregar:hover {
+	background-color: #80b3ff;
+	color: white;
+	border-color: #6699ff;
+}
+
+/* Botón Agregar Usuario - Verde */
+.btn-vermas {
+	border-color: #66bb6a; /* Verde más suave */
+	color: #66bb6a;
+}
+
+.btn-vermas:hover {
+	background-color: #66bb6a;
+	color: white;
+	border-color: #4caf50;
+}
+
+/* Estilos para los iconos dentro de los botones */
+.btn svg {
+	margin-left: 5px; /* Espacio entre el texto y el icono */
+	width: 16px; /* Reducir tamaño del icono */
+	height: 16px; /* Reducir tamaño del icono */
+	transition: all 0.3s;
+}
+
+.btn-outline-primary:hover svg, .btn-outline-warning:hover svg,
+	.btn-outline-danger:hover svg {
+	fill: white; /* Los iconos cambian a blanco cuando el botón es hover */
+}
+
+.btn-outline-primary.btn-sm, .btn-outline-warning.btn-sm,
+	.btn-outline-danger.btn-sm {
+	font-size: 14px;
+}
+
+/* Asegura que la pantalla se ajuste a pantallas pequeñas */
+@media ( max-width : 768px) {
+	.sidebar {
+		width: 200px;
+	}
+	.main-content {
+		margin-left: 200px;
+	}
+}

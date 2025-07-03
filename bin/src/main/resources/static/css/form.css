@@ -1,0 +1,8 @@
+.form-container {
+			max-width: 800px;
+			margin: 0 auto; /* Centra horizontalmente */
+		}
+		
+		.card-header {
+			background-color: #a5d6a7; /* Verde suave */
+		}
