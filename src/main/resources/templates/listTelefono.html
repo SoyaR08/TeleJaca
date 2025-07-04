@@ -9,23 +9,8 @@
 </head>
 <body>
 	<div class="wrapper">
-		<div class="sidebar p-3">
-    <img alt="Logo" src="">
-    <h3 class="text-center">Menú de Navegación</h3>
-   
-    <a href="#">Inicio</a>
-    <a href="/usuario">Usuarios</a>
-    <a href="/telefono">Teléfonos</a>
-    <a href="/muestraTiposLlamada">Tipos de Llamada</a>
-    <a href="/medicamento">Medicamentos</a>
-    <a href="/localidades">Localidades</a>
-	<a href="/empleado">Empleado</a>
-    
-    <div class="d-flex gap-2 mt-2">
-        <a href="/login"><button class="btn btn-primary">Login</button></a>
-        <a href="/logout"><button class="btn btn-danger">Log out</button></a>
-    </div>
-</div>
+		<!-- Inserta la barra lateral -->
+        <div th:replace="~{partials/navbar :: navbarFragment}"></div>
 
 		<div class="main-content">
 			<div class="container mt-5">

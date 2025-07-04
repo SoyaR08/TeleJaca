@@ -42,7 +42,7 @@ public class SecurityConfig {
 			request.requestMatchers("/").permitAll()
 			.requestMatchers("/css/*").permitAll()
 			.requestMatchers("/usuario/**").hasAnyAuthority("ADMIN", "ADMINUSER", "USER")
-			.requestMatchers("/telefono/**").hasAnyAuthority("ADMINUSER")
+			.requestMatchers("/telefono/**").hasAnyAuthority("ADMIN")
 			.requestMatchers("/llamada/**").authenticated()
 			.requestMatchers("/medicamento/**").hasAnyAuthority("ADMIN", "USER","ADMINUSER")
 			.requestMatchers("/empleado/**").hasAnyAuthority("ADMIN")

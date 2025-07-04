@@ -123,17 +123,8 @@
 	</style>
 
 	<div class="wrapper">
-		<div class="sidebar p-3">
-			<h3 class="text-center">Menú de Navegación</h3>
-
-			<a href="/">Inicio</a> <a href="/usuario">Usuarios</a> <a
-				href="/telefono">Telefonos</a> <a href="/muestraTiposLlamada">Tipos Llamada</a> <a
-				href="/medicamento">Medicamento</a> <a href="/localidades">Localidad</a><a href="/empleado">Empleado</a>
-				<div class="d-flex gap-2 mt-2">
-        <a href="/login" th:if="${#authorization.expression('isAnonymous()')}"><button class="btn btn-primary">Login</button></a>
-        <a href="/logout" th:if="${#authorization.expression('isAuthenticated()')}"><button class="btn btn-danger">Log out</button></a>
-    </div>
-		</div>
+		<!-- Inserta la barra lateral -->
+        <div th:replace="~{partials/navbar :: navbarFragment}"></div>
 
 		<div class="main-content">
 			<div class="container mt-5">
