@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.AtencionSocioSanitaria.model.Medicamento;
@@ -30,6 +31,13 @@ public class UsuarioServices {
 	public Usuario getOneUsuario(Integer id){
 		
 		return usuarioRepository.findById(id).orElse(null);
+	}
+	
+	public Page<Usuario> orderAll(int pageNum, int pageSize, String sortField) {
+		
+		Pageable pageable = PageRequest.of(pageNum, pageSize, Sort.by(sortField).ascending());
+		
+		return usuarioRepository.findAll(pageable);
 	}
 	
 	public boolean addornot(Medicamento m) {
