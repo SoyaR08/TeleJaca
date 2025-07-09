@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 05-02-2025 a las 23:29:45
+-- Tiempo de generación: 09-07-2025 a las 16:06:45
 -- Versión del servidor: 8.1.0
 -- Versión de PHP: 8.2.8
 
@@ -11,15 +11,16 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+CREATE DATABASE IF NOT EXISTS AtencionSocioSanitaria
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_0900_ai_ci;
+
+USE AtencionSocioSanitaria;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `AtencionSocioSanitaria`
---
 
 -- --------------------------------------------------------
 
@@ -77,7 +78,8 @@ CREATE TABLE `Empleado` (
 --
 
 INSERT INTO `Empleado` (`username`, `password`, `nombre`, `apellido`, `email`, `roles`) VALUES
-('rafnavgom', '$2a$10$IKbd0zwNDgdx/W5JBv.x8uLodRgAbOt3Hc0vcs.LDPdLwqudL2fxO', 'Rafael', 'Navarro', 'rafnavgom@telejaca.com', 'USER'),
+('preview', '$2a$10$wrPWCQQqBJaLsSPYee6JCe3XylxkOjRxTuz4/4WklhqxF7GxYYOKq', 'live preview', 'just for inspect the project', 'preview@gmail.com', 'ADMIN'),
+('rafnavgom', '$2a$10$AQQ41jSHeAJgWc3lV3/RDuu39ab2/3jdA1SviQBAWfX02DKIGAyBi', 'Rafael', 'Navarro', 'rafnavgom@telejaca.com', 'ADMIN'),
 ('TheAdmin', '$2a$10$orEWQx7qwBsk0J3u/3OrBOl1mK3iYJM2fUMqSi8TPWwyORRp.KPwi', 'Administrador', 'Del Sistema', 'adminProazo@gmail.com', 'ADMIN');
 
 -- --------------------------------------------------------
